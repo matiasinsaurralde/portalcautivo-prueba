@@ -3,23 +3,40 @@
 <head>
   <meta charset="utf-8">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-  <title></title>
+  <title>Prueba del Portal Cautivo</title>
 </head>
 <body>
 
-  <ul>
-  </ul>
+  <div>
 
-  <script>
-    $(document).ready( function() {
-      $.ajax({
-        url: 'http://internet.tigo.com.py/portal-captivo-rest-war/portal/account/getMsisdn',
-        method: 'get',
-        dataType: 'text'
-      }).done( function( data ) {
-        $( 'ul' ).append( '<li>Tu numero es ' + data + '</li>' )
+    <h3>Prueba</h3>
+
+    <p>Hola, esta es una pequeña prueba de la configuración CORS del Portal Cautivo de Tigo.</p>
+    <p>A continuación aparecerán algunos datos de tu línea:</p>
+
+    <ul style="list-style: none;"></ul>
+
+    <script>
+      $(document).ready( function() {
+
+        $.ajax({
+          url: 'http://internet.tigo.com.py/portal-captivo-rest-war/portal/account/getMsisdn',
+          method: 'get',
+          dataType: 'text'
+        }).done( function( msisdn ) {
+
+          $( 'ul' ).append( '<li>Tu numero es ' + msisdn + '</li>' )
+
+          $.ajax( { url: 'http://internet.tigo.com.py/portal-captivo-rest-war/portal/account/getAccountType?msisdn=' + msisdn, dataType: 'text' }).done( function(data) {
+            $( 'ul' ).append( '<li>Datos de cuenta: <code>' + data + '</code></li>'  )
+          })
+
+        })
       })
-    })
-  </script>
+    </script>
+
+    <p>Un saludo</p>
+
+  </div>
 </body>
 </html>
