@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <title></title>
+</head>
+<body>
+
+  <ul>
+  </ul>
+
+  <script>
+    $(document).ready( function() {
+      $.ajax({
+        url: 'http://internet.tigo.com.py/portal-captivo-rest-war/portal/account/getMsisdn',
+        method: 'get',
+        dataType: 'text'
+      }).done( function( data ) {
+        $( 'ul' ).append( '<li>Tu numero es ' + data + '</li>' )
+      })
+    })
+  </script>
+</body>
+</html>
