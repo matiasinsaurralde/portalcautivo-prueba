@@ -22,7 +22,11 @@
         $.ajax({
           url: 'http://internet.tigo.com.py/portal-captivo-rest-war/portal/account/getMsisdn',
           method: 'get',
-          dataType: 'text'
+          dataType: 'text',
+          timeout: 5000,
+          error: function() {
+            $( 'ul' ).append( '<h3>Lo siento, debes conectarte desde tu TIGO :(</h3>' )
+          }
         }).done( function( msisdn ) {
 
           $( 'ul' ).append( '<li>Tu numero es ' + msisdn + '</li>' )
